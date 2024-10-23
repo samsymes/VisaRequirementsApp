@@ -26,9 +26,6 @@ function Results() {
   const From = searchParams.get("From");
   const To = searchParams.get("To");
 
-  // const FromAirport = AllCountryInfoService?.getStartAirportCode(From);
-  // const ToAirport = AllCountryInfoService?.getEndAirportCode(From, To);
-
   const resultsObject = AllCountryInfoService?.getResultsObject(From, To);
   const visaRequirements = resultsObject?.getVisaRequirements();
   const allowedStay = resultsObject?.getAllowedStay();
@@ -39,7 +36,7 @@ function Results() {
   useEffect(() => {
     RestCountriesService.getCountryInfo(From, To).then(
       ({ destinationCountry, sourceCountry }) => {
-        // FIX IT: go up steam and get the first element of the array
+        // **UPDATE: received from the API that way FIX IT: go up steam and get the first element of the array
         setDestinationCountryInfo(destinationCountry[0]);
         setSourceCountryInfo(sourceCountry[0]);
       }
@@ -54,7 +51,7 @@ function Results() {
 
   const {
     name: destinationCountryName = "",
-    capital: destinationCapital = [],
+    capital: destinationCapital = "",
     timeZones: destinationTimeZones = [],
     population: destinationPopulation = [],
     languages: destinationLanguages = [],
